@@ -14,6 +14,9 @@ str(pew)
 names(pew)
 pew.better <- melt(pew, id.vars="religion")
 
+pew.dplyr <- pew %>% 
+    gather(income, n, -religion)
+
 ###IF you want to melt on more than one column
 #pew.better <- melt(pew, id.vars=c("religion", "X..10k"))
 
