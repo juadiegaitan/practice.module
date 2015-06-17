@@ -33,3 +33,15 @@ head(raw)
 raw$new_sp <- NULL
 names(raw) <- str_replace(names(raw), "new_sp_", "")
 head(raw)
+melted <- melt(raw, id.vars = c("iso2", "year"))
+str(melted)
+?str_sub
+melted$gender <- str_sub(melted$variable, start=1L, end=1L)
+melted$age <- str_sub(melted$variable, start=2, -1)
+melted$variable <- NULL
+str(melted)
+
+boxplot(melted$value ~ melted$age * melted$gender)
+boxplot(log(melted$value) ~ melted$age * melted$gender)
+
+boxplot(log(melted$value) ~ as.factor(melted$age))
